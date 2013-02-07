@@ -8,8 +8,6 @@ import org.apache.isis.applib.annotation.Value;
  * @author adamhoward
  */
 @Value(semanticsProviderClass=UnLocodeValueSemanticsProvider.class)
-@javax.jdo.annotations.EmbeddedOnly
-@javax.jdo.annotations.PersistenceCapable
 public class UnLocode {
 
 	private String unlocode;

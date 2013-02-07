@@ -1,6 +1,12 @@
 package onaboat.domain.model.voyage;
 
+import java.util.List;
+
 import org.apache.isis.applib.AbstractFactoryAndRepository;
+import org.apache.isis.applib.annotation.ActionSemantics;
+import org.apache.isis.applib.annotation.ActionSemantics.Of;
+import org.apache.isis.applib.annotation.Named;
+import org.apache.isis.applib.annotation.Prototype;
 import org.apache.isis.applib.filter.Filter;
 
 /**
@@ -8,8 +14,10 @@ import org.apache.isis.applib.filter.Filter;
  *
  * @author adamhoward
  */
+@Named("Voyages")
 public class VoyageRepository extends AbstractFactoryAndRepository {
 
+	@ActionSemantics(Of.SAFE)
 	public Voyage find(final VoyageNumber voyageNumber) {
 		return firstMatch(Voyage.class, new Filter<Voyage>() {
 			@Override
@@ -17,5 +25,11 @@ public class VoyageRepository extends AbstractFactoryAndRepository {
 				return voyage.getVoyageNumber().equals(voyageNumber);
 			}
 		});
+	}
+
+	@Prototype
+	@ActionSemantics(Of.SAFE)
+	public List<Voyage> findAll() {
+		return allInstances(Voyage.class);
 	}
 }

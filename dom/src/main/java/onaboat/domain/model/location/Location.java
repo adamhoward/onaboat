@@ -1,13 +1,10 @@
 package onaboat.domain.model.location;
 
-import javax.jdo.annotations.IdentityType;
-
 /**
  * DOC: THIS CLASS HAS NO COMMENT!
  *
  * @author adamhoward
  */
-@javax.jdo.annotations.PersistenceCapable(identityType=IdentityType.DATASTORE)
 public class Location {
 
 	private UnLocode unLocode;

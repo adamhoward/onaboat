@@ -30,3 +30,17 @@ uncomment to add a logo (in an ../images directory relative to this file)
 	display: none;
 }
 */
+
+#header {
+	background-image:none;
+}
+#header .applicationName {
+	line-height:60px;
+	text-transform:uppercase;
+	vertical-align:baseline;
+	font-weight:bold;
+	color: white;
+	display: block;
+	margin-left:21px;
+	font-size:150%;
+}
