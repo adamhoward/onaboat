@@ -1,12 +1,16 @@
 package onaboat.domain.model.voyage;
 
+import java.util.List;
+
 import org.apache.isis.applib.annotation.MemberOrder;
+import org.apache.isis.applib.annotation.ObjectType;
 
 /**
  * DOC: THIS CLASS HAS NO COMMENT!
  *
  * @author adamhoward
  */
+@ObjectType("VOY")
 public class Voyage {
 
 	public static final Voyage NONE = new Voyage(
@@ -16,6 +20,7 @@ public class Voyage {
 	public Voyage(final VoyageNumber voyageNumber, final Schedule schedule) {
 		this.voyageNumber = voyageNumber;
 		this.schedule = schedule;
+		this.carrierMovements = schedule.getCarrierMovements();
 	}
 
 	// {{ VoyageNumber (property)
@@ -35,6 +40,13 @@ public class Voyage {
 		return schedule;
 	}
 	// }}
+
+	private List<CarrierMovement> carrierMovements;
+
+	@MemberOrder(sequence = "3")
+	public List<CarrierMovement> getCarrierMovements() {
+		return carrierMovements;
+	}
 
 	@Override
 	public String toString() {

@@ -1,6 +1,5 @@
 package onaboat.domain.model.voyage;
 
-import java.util.Arrays;
 import java.util.Date;
 
 import onaboat.domain.model.location.Location;
@@ -11,6 +10,8 @@ import onaboat.domain.model.voyage.Voyage;
 import onaboat.domain.model.voyage.VoyageNumber;
 
 import org.apache.isis.applib.fixtures.AbstractFixture;
+
+import com.google.common.collect.Lists;
 
 /**
  * DOC: THIS CLASS HAS NO COMMENT!
@@ -25,7 +26,7 @@ public class SampleVoyages extends AbstractFixture {
 	}
 
 	private Voyage createVoyage(String id, Location from, Location to) {
-		return new Voyage(new VoyageNumber(id), new Schedule(Arrays.asList(
+		return new Voyage(new VoyageNumber(id), new Schedule(Lists.newArrayList(
 				new CarrierMovement(from, to, new Date(), new Date())
 		)));
 	}

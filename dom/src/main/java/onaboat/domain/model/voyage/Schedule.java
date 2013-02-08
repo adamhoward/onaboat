@@ -21,7 +21,7 @@ public class Schedule {
 	}
 
 	public List<CarrierMovement> getCarrierMovements() {
-		return Collections.unmodifiableList(carrierMovements);
+		return carrierMovements;
 	}
 
 }
