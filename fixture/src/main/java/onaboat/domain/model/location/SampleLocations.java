@@ -23,7 +23,7 @@ public class SampleLocations extends AbstractFixture {
 		getContainer().persistIfNotAlready(new Location(new UnLocode("DEHAM"), "Hamburg"));
 		getContainer().persistIfNotAlready(new Location(new UnLocode("CNSHA"), "Shanghai"));
 		getContainer().persistIfNotAlready(new Location(new UnLocode("NLRTM"), "Rotterdam"));
-		getContainer().persistIfNotAlready(new Location(new UnLocode("SEGOT"), "Gšteborg"));
+		getContainer().persistIfNotAlready(new Location(new UnLocode("SEGOT"), "Göteborg"));
 		getContainer().persistIfNotAlready(new Location(new UnLocode("CNHGH"), "Hangzhou"));
 		getContainer().persistIfNotAlready(new Location(new UnLocode("USNYC"), "New York"));
 		getContainer().persistIfNotAlready(new Location(new UnLocode("USDAL"), "Dallas"));
