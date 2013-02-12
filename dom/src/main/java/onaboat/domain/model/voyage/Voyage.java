@@ -1,5 +1,6 @@
 package onaboat.domain.model.voyage;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.isis.applib.annotation.MemberOrder;
@@ -14,13 +15,14 @@ import org.apache.isis.applib.annotation.ObjectType;
 public class Voyage {
 
 	public static final Voyage NONE = new Voyage(
-			new VoyageNumber(""), Schedule.EMPTY
+			new VoyageNumber(""), Collections.<CarrierMovement>emptyList()
 	);
 
-	public Voyage(final VoyageNumber voyageNumber, final Schedule schedule) {
+	public Voyage(){}
+
+	public Voyage(final VoyageNumber voyageNumber, final List<CarrierMovement> schedule) {
 		this.voyageNumber = voyageNumber;
 		this.schedule = schedule;
-		this.carrierMovements = schedule.getCarrierMovements();
 	}
 
 	// {{ VoyageNumber (property)
@@ -30,23 +32,22 @@ public class Voyage {
 	public VoyageNumber getVoyageNumber() {
 		return voyageNumber;
 	}
+	public void setVoyageNumber(VoyageNumber voyageNumber) {
+		this.voyageNumber = voyageNumber;
+	}
 	// }}
 
 	// {{ Schedule (property)
-	private Schedule schedule;
+	private List<CarrierMovement> schedule;
 
 	@MemberOrder(sequence = "2")
-	public Schedule getSchedule() {
+	public List<CarrierMovement> getSchedule() {
 		return schedule;
 	}
-	// }}
-
-	private List<CarrierMovement> carrierMovements;
-
-	@MemberOrder(sequence = "3")
-	public List<CarrierMovement> getCarrierMovements() {
-		return carrierMovements;
+	public void setSchedule(List<CarrierMovement> schedule) {
+		this.schedule = schedule;
 	}
+	// }}
 
 	@Override
 	public String toString() {

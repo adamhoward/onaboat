@@ -2,6 +2,9 @@ package onaboat.domain.model.voyage;
 
 import java.util.Date;
 
+import org.apache.isis.applib.annotation.MemberOrder;
+import org.apache.isis.applib.util.TitleBuffer;
+
 import onaboat.domain.model.location.Location;
 
 /**
@@ -11,16 +14,24 @@ import onaboat.domain.model.location.Location;
  */
 public final class CarrierMovement {
 
-	private Location departureLocation;
-	private Location arrivalLocation;
-	private Date departureTime;
-	private Date arrivalTime;
-
 	// Null Object pattern
 	public static final CarrierMovement NONE = new CarrierMovement(
 			Location.UNKNOWN, Location.UNKNOWN,
 			new Date(0), new Date(0)
 	);
+
+	// {{ Identification
+	public String title() {
+		final TitleBuffer buf = new TitleBuffer();
+		buf.append(departureLocation.getUnLocode());
+		buf.append("-");
+		buf.append(arrivalLocation.getUnLocode());
+		return buf.toString();
+	}
+	// }}
+
+
+	public CarrierMovement(){}
 
 	public CarrierMovement(
 			Location departureLocation,
@@ -33,18 +44,59 @@ public final class CarrierMovement {
 		this.arrivalTime = arrivalTime;
 	}
 
+	// {{ DepartureLocation (property)
+	private Location departureLocation;
+
+	@MemberOrder(sequence = "1")
 	public Location getDepartureLocation() {
 		return departureLocation;
 	}
-	public Location getArrivalLocation() {
-		return arrivalLocation;
+
+	public void setDepartureLocation(final Location departureLocation) {
+		this.departureLocation = departureLocation;
 	}
+	// }}
+
+
+	// {{ DepartureTime (property)
+	private Date departureTime;
+
+	@MemberOrder(sequence = "2")
 	public Date getDepartureTime() {
 		return departureTime;
 	}
+
+	public void setDepartureTime(final Date departureTime) {
+		this.departureTime = departureTime;
+	}
+	// }}
+
+	// {{ ArrivalLocation (property)
+	private Location arrivalLocation;
+
+	@MemberOrder(sequence = "3")
+	public Location getArrivalLocation() {
+		return arrivalLocation;
+	}
+
+	public void setArrivalLocation(final Location arrivalLocation) {
+		this.arrivalLocation = arrivalLocation;
+	}
+	// }}
+
+	// {{ ArrivalTime (property)
+	private Date arrivalTime;
+
+	@MemberOrder(sequence = "4")
 	public Date getArrivalTime() {
 		return arrivalTime;
 	}
+
+	public void setArrivalTime(final Date arrivalTime) {
+		this.arrivalTime = arrivalTime;
+	}
+	// }}
+
 
 	@Override
 	public boolean equals(final Object o) {
