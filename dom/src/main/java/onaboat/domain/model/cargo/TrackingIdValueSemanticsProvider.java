@@ -20,7 +20,7 @@ public class TrackingIdValueSemanticsProvider extends ValueSemanticsProviderAndF
 		return TrackingIdValueFacet.class;
 	}
 
-	private static final int TYPICAL_LENGTH = 5;
+	private static final int TYPICAL_LENGTH = 8;
 	private static final TrackingId DEFAULT_VALUE = null;
 
 	/**
