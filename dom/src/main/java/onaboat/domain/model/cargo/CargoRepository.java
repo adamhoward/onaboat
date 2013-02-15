@@ -1,6 +1,10 @@
 package onaboat.domain.model.cargo;
 
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
+
+import onaboat.domain.model.location.Location;
 
 import org.apache.isis.applib.AbstractFactoryAndRepository;
 import org.apache.isis.applib.annotation.ActionSemantics;
@@ -31,11 +35,20 @@ public class CargoRepository extends AbstractFactoryAndRepository {
 		return allInstances(Cargo.class);
 	}
 
-	@ActionSemantics(Of.NON_IDEMPOTENT)
-	public Cargo bookNewCargo(TrackingId trackingId, RouteSpecification routeSpecification) {
+	public Cargo bookNewCargo(
+			@Named("Origin") Location origin,
+			@Named("Destination") Location destination,
+			@Named("Arrival Deadline") Date arrivalDeadline) {
 		Cargo cargo = newTransientInstance(Cargo.class);
-		cargo.setTrackingId(trackingId);
+		RouteSpecification routeSpecification = newTransientInstance(RouteSpecification.class);
+		routeSpecification.setOrigin(origin);
+		routeSpecification.setDestination(destination);
+		routeSpecification.setArrivalDeadline(arrivalDeadline);
 		cargo.setRouteSpecification(routeSpecification);
+		String uuid = UUID.randomUUID().toString().toUpperCase();
+		cargo.setTrackingId(new TrackingId(uuid.substring(0, uuid.indexOf('-'))));
+		persist(cargo);
 		return cargo;
 	}
+
 }
