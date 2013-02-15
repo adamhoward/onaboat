@@ -2,11 +2,9 @@ package onaboat.domain.model.cargo;
 
 import java.util.Date;
 
-import javax.jdo.annotations.EmbeddedOnly;
+import org.apache.isis.applib.util.TitleBuffer;
 
 import onaboat.domain.model.location.Location;
-
-import com.google.common.base.Preconditions;
 
 /**
  * DOC: THIS CLASS HAS NO COMMENT!
@@ -15,12 +13,23 @@ import com.google.common.base.Preconditions;
  */
 public class RouteSpecification {
 
-	public RouteSpecification(final Location origin, final Location destination, final Date arrivalDeadline) {
-		Preconditions.checkArgument(!origin.getUnLocode().equals(destination.getUnLocode()), "Origin and destination cannot be the same:" + origin);
+	// {{ Identification
+	public String title() {
+		final TitleBuffer buf = new TitleBuffer();
+		buf.append(origin.getUnLocode())
+				.append("to")
+				.append(destination.getUnLocode())
+				.append("by")
+				.append(arrivalDeadline);
+		return buf.toString();
+	}
+	// }}
 
-		this.origin = origin;
-		this.destination = destination;
-		this.arrivalDeadline = arrivalDeadline;
+	public String validate() {
+		if (origin.getUnLocode().equals(destination.getUnLocode())) {
+			return "Origin and destination cannot be the same:" + origin;
+		}
+		return null;
 	}
 
 	// {{ Origin (property)
