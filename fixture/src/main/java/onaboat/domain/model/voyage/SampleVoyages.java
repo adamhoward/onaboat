@@ -1,7 +1,7 @@
 package onaboat.domain.model.voyage;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import static onaboat.fixture.DateUtils.*;
+
 import java.util.Date;
 import java.util.List;
 
@@ -90,18 +90,6 @@ public class SampleVoyages extends AbstractFixture {
 		}
 	}
 
-	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-	private Date toDate(String datePart) {
-		return toDate(datePart, "00:00");
-	}
-	private Date toDate(String datePart, String timePart) {
-		try {
-			return sdf.parse(datePart + " " + timePart);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			throw new RuntimeException(e);
-		}
-	}
 
 	// {{ injected: LocationRepository
 	private LocationRepository locationRepository;
