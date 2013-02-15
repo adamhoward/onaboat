@@ -6,12 +6,14 @@ import onaboat.domain.model.location.Location;
 import onaboat.domain.model.voyage.Voyage;
 
 import org.apache.isis.applib.annotation.MemberOrder;
+import org.apache.isis.applib.annotation.ObjectType;
 
 /**
  * DOC: THIS CLASS HAS NO COMMENT!
  *
  * @author adamhoward
  */
+@ObjectType("LEG")
 public class Leg {
 
 	// {{ Voyage (property)

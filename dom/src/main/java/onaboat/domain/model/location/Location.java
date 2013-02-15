@@ -1,10 +1,15 @@
 package onaboat.domain.model.location;
 
+import org.apache.isis.applib.annotation.Bounded;
+import org.apache.isis.applib.annotation.ObjectType;
+
 /**
  * DOC: THIS CLASS HAS NO COMMENT!
  *
  * @author adamhoward
  */
+@Bounded
+@ObjectType("LOC")
 public class Location {
 
 	private UnLocode unLocode;

@@ -3,6 +3,7 @@ package onaboat.domain.model.voyage;
 import java.util.Date;
 
 import org.apache.isis.applib.annotation.MemberOrder;
+import org.apache.isis.applib.annotation.ObjectType;
 import org.apache.isis.applib.util.TitleBuffer;
 
 import onaboat.domain.model.location.Location;
@@ -12,6 +13,7 @@ import onaboat.domain.model.location.Location;
  *
  * @author adamhoward
  */
+@ObjectType("MOVE")
 public final class CarrierMovement {
 
 	// Null Object pattern
