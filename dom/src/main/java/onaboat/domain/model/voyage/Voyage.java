@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ObjectType;
+import org.apache.isis.applib.annotation.Resolve;
 
 /**
  * DOC: THIS CLASS HAS NO COMMENT!
@@ -41,6 +42,7 @@ public class Voyage {
 	private List<CarrierMovement> schedule;
 
 	@MemberOrder(sequence = "2")
+	@Resolve
 	public List<CarrierMovement> getSchedule() {
 		return schedule;
 	}
@@ -53,8 +55,5 @@ public class Voyage {
 	public String toString() {
 		return "Voyage " + voyageNumber;
 	}
-
-
-
 
 }

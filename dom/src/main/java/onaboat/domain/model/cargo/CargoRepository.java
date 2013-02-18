@@ -10,6 +10,7 @@ import org.apache.isis.applib.AbstractFactoryAndRepository;
 import org.apache.isis.applib.annotation.ActionSemantics;
 import org.apache.isis.applib.annotation.Named;
 import org.apache.isis.applib.annotation.ActionSemantics.Of;
+import org.apache.isis.applib.annotation.Programmatic;
 import org.apache.isis.applib.filter.Filter;
 
 /**
@@ -40,7 +41,7 @@ public class CargoRepository extends AbstractFactoryAndRepository {
 			@Named("Destination") Location destination,
 			@Named("Arrival Deadline") Date arrivalDeadline) {
 		Cargo cargo = newTransientInstance(Cargo.class);
-		RouteSpecification routeSpecification = newTransientInstance(RouteSpecification.class);
+		RouteSpecification routeSpecification = newAggregatedInstance(cargo, RouteSpecification.class);
 		routeSpecification.setOrigin(origin);
 		routeSpecification.setDestination(destination);
 		routeSpecification.setArrivalDeadline(arrivalDeadline);
@@ -48,6 +49,16 @@ public class CargoRepository extends AbstractFactoryAndRepository {
 		String uuid = UUID.randomUUID().toString().toUpperCase();
 		cargo.setTrackingId(new TrackingId(uuid.substring(0, uuid.indexOf('-'))));
 		persist(cargo);
+		return cargo;
+	}
+
+	@Programmatic
+	public Cargo specifyNewRouteFor(Cargo cargo, Location origin, Location destination, Date arrivalDeadline) {
+		RouteSpecification routeSpecification = newAggregatedInstance(cargo, RouteSpecification.class);
+		routeSpecification.setOrigin(origin);
+		routeSpecification.setDestination(destination);
+		routeSpecification.setArrivalDeadline(arrivalDeadline);
+		cargo.setRouteSpecification(routeSpecification);
 		return cargo;
 	}
 

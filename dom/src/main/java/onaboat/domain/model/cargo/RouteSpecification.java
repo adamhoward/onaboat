@@ -2,6 +2,7 @@ package onaboat.domain.model.cargo;
 
 import java.util.Date;
 
+import org.apache.isis.applib.annotation.Aggregated;
 import org.apache.isis.applib.util.TitleBuffer;
 
 import onaboat.domain.model.location.Location;
@@ -11,6 +12,7 @@ import onaboat.domain.model.location.Location;
  *
  * @author adamhoward
  */
+@Aggregated
 public class RouteSpecification {
 
 	// {{ Identification

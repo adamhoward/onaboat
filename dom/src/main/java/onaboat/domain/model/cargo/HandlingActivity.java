@@ -13,6 +13,17 @@ import org.apache.isis.applib.annotation.MemberOrder;
  */
 public class HandlingActivity {
 
+	HandlingActivity(HandlingEvent.Type type, Location location) {
+		this.type = type;
+		this.location = location;
+	}
+
+	HandlingActivity(HandlingEvent.Type type, Location location, Voyage voyage) {
+		this.type = type;
+		this.location = location;
+		this.voyage = voyage;
+	}
+
 	// {{ Type (property)
 	private HandlingEvent.Type type;
 
